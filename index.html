@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DailyHabits Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">DailyHabits</div>
+    <div class="auth-buttons">
+      <button class="btn-auth">Login</button>
+      <button class="btn-auth">Sign Up</button>
+    </div>
+  </header>
+
+  <section class="quote-box">
+    <div class="quote-icon">❝</div>
+    <blockquote>
+      "Success doesn't come from what you do occasionally, it comes from what you do consistently."
+    </blockquote>
+    <span>- Marie Forleo</span>
+  </section>
+
+  <main class="tracker">
+    <div class="task-input">
+      <input type="text" id="taskInput" placeholder="Enter a new habit..." />
+      <input type="date" id="dateInput" />
+      <button class="btn-add" onclick="addTask()">Add Habit</button>
+    </div>
+
+    <h3>Tasks for <span id="selectedDate">[Select Date]</span>:</h3>
+    <div id="taskList" class="task-list"></div>
+
+    <div class="chart-section">
+      <canvas id="taskChart"></canvas>
+    </div>
+  </main>
+
+  <section class="reviews">
+    <h2>What users say</h2>
+    <div class="review">🌟 "I've finally built a consistent gym routine!"</div>
+    <div class="review">🌟 "This tracker helps me stay focused every day!"</div>
+    <div class="review">🌟 "I love how simple and clean the app is."</div>
+  </section>
+
+  <footer>
+    <div class="footer-title">Get started for the rest of your life, today.</div>
+    <p>
+      Our mission in life is to help others achieve their full potential.
+      That's why DailyHabits is 100% free to use.
+    </p>
+    <button class="btn-footer" onclick="resetAndCreateTask()">✅ Start DailyHabits today</button>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

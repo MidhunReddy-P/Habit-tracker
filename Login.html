@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DailyHabits Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .auth-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .auth-container h2 {
+      color: #28a745; /* Green */
+      margin-bottom: 1.5rem;
+    }
+    .auth-container input {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .auth-container button {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #28a745; /* Green */
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    .auth-container button:hover {
+      background-color: #218838; /* Darker green */
+    }
+    .switch-link {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+    .switch-link a {
+      color: #28a745; /* Green */
+      cursor: pointer;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-container" id="loginForm">
+    <h2>Login to DailyHabits</h2>
+    <input type="text" id="loginUsername" placeholder="Username">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button onclick="loginUser()">Log In</button>
+    <div class="switch-link">Don't have an account? <a onclick="showSignup()">Sign up here</a></div>
+  </div>
+
+  <div class="auth-container" id="signupForm" style="display:none;">
+    <h2>Sign Up for DailyHabits</h2>
+    <input type="text" id="signupUsername" placeholder="Username">
+    <input type="password" id="signupPassword" placeholder="Password">
+    <button onclick="signupUser()">Sign Up</button>
+    <div class="switch-link">Already have an account? <a onclick="showLogin()">Log in here</a></div>
+  </div>
+
+  <iframe id="trackerFrame" src="index.html" style="display:none; width:100vw; height:100vh; border:none;"></iframe>
+
+  <script>
+    const users = {};
+
+    function showLogin() {
+      document.getElementById('signupForm').style.display = 'none';
+      document.getElementById('loginForm').style.display = 'block';
+    }
+
+    function showSignup() {
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('signupForm').style.display = 'block';
+    }
+
+    function signupUser() {
+      const username = document.getElementById('signupUsername').value;
+      const password = document.getElementById('signupPassword').value;
+      if (username && password) {
+        users[username] = password;
+        alert('Sign up successful! Please login.');
+        showLogin();
+      } else {
+        alert('Please fill in all fields.');
+      }
+    }
+
+    function loginUser() {
+      const username = document.getElementById('loginUsername').value;
+      const password = document.getElementById('loginPassword').value;
+      if (users[username] && users[username] === password) {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('signupForm').style.display = 'none';
+        document.getElementById('trackerFrame').style.display = 'block';
+      } else {
+        alert('Invalid credentials.');
+      }
+    }
+  </script>
+</body>
+</html>
